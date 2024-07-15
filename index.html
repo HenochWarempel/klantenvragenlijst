@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bedrijf en Zoekwoord Vragenlijst Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 5px;
+        }
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bedrijf en Zoekwoord Vragenlijst Generator</h1>
+    <form id="generatorForm">
+        <label for="company">Voer de bedrijfsnaam in:</label>
+        <input type="text" id="company" required>
+        
+        <label for="keyword">Voer een zoekwoord in:</label>
+        <input type="text" id="keyword" required>
+        
+        <button type="submit">Genereer Vragen</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('generatorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const company = document.getElementById('company').value;
+            const keyword = document.getElementById('keyword').value;
+            const questions = [
+                `Wat houdt volgens jou deze dienst concreet in? Wat lever je precies en wat mag de klant verwachten?`,
+                `Waarom zoekt iemand naar ${keyword}?`,
+                `Welke problemen heeft deze zoeker? Waar loopt hij of zij tegenaan in het dagelijks leven, dat deze gaat zoeken op ${keyword}?`,
+                `Wat is zijn of haar doel als ze in zee zouden gaan met ${company}?`,
+                `Welke voordelen levert het de zoeker op als jullie helpen met ${keyword}? Denk aan tijdswinst, lagere kosten, navolging wetgeving, et cetera.`,
+                `Hoe kan ${company} helpen bij ${keyword}?`,
+                `Hoe ziet jullie samenwerking eruit? Welke stappen doorlopen jullie samen? Intake, analyse, enzovoorts.`,
+                `In welke branches heb je ervaring met ${keyword} en kun je daar concrete voorbeelden van noemen?`
+            ];
+
+            const output = document.getElementById('output');
+            output.innerHTML = '<h2>Gegenereerde Vragen:</h2><ol>' + 
+                questions.map(q => `<li>${q}</li>`).join('') + 
+                '</ol>';
+        });
+    </script>
+</body>
+</html>
